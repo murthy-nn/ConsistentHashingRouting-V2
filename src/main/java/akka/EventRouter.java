@@ -98,8 +98,8 @@ public class EventRouter extends AbstractBehavior<EventCommand> {
 		 * But, StopEventProcessing do not reach the EventWorker
 		 */
 		GroupRouter<EventCommand> router = Routers.group(serviceKey).
-				//withConsistentHashingRouting(poolSize, msg -> msg.getDevice().getIp());
-				withConsistentHashingRouting(poolSize, msg -> msg.getHash(msg.getDevice().getId()));
+				withConsistentHashingRouting(poolSize, msg -> msg.getDevice().getIp());
+				//withConsistentHashingRouting(poolSize, msg -> msg.getHash(msg.getDevice().getId()));
 
 		getContext().getLog().debug("Event worker is registered with the Receptionist");
 		Behavior<EventCommand> workerBehavior = 
